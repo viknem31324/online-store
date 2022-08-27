@@ -9,8 +9,11 @@ Vue.config.productionTip = false
 Vue.directive('blur', {
   inserted(el) {
     el.addEventListener("focusout", () => {
-      if (el.value <= 0) {
-        el.value = 0;
+      if (el.value <= 1) {
+        el.value = 1;
+      }
+      if(el.value > 100){
+        el.value = 100;
       }
     });
   }

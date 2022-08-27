@@ -1,12 +1,14 @@
 <template>
   <v-app-bar app color="#c9def1" height="100px" class="header">
     <div class="containers header__containers">
-      <v-app-bar-nav-icon width="71px" height="71px" class="header__logo">
-        <img class="header__img" src="../assets/header/vue-logo.svg" alt="" />
-      </v-app-bar-nav-icon>
-      <v-app-bar-title>
-        <h2 class="header__title">VUE-SPA-SHOP</h2>
-      </v-app-bar-title>
+      <router-link tag="div" class="header__blockLink" to="/">
+        <v-app-bar-nav-icon width="71px" height="71px" class="header__logo">
+          <img class="header__img" src="../assets/header/vue-logo.svg" alt="" />
+        </v-app-bar-nav-icon>
+        <v-app-bar-title>
+          <h2 class="header__title">VUE-SPA-SHOP</h2>
+        </v-app-bar-title>
+      </router-link>
       <nav class="header__nav">
         <ul class="header__list">
           <router-link
@@ -26,8 +28,13 @@
         >
       </div>
       <div class="header__cart cart">
-        <v-btn  elevation="0" icon
-          ><v-icon class="cart__shoppingCart" large color="black" aria-hidden="false">
+        <v-btn elevation="0" icon
+          ><v-icon
+            class="cart__shoppingCart"
+            large
+            color="black"
+            aria-hidden="false"
+          >
             shopping_cart</v-icon
           ></v-btn
         >
@@ -127,5 +134,9 @@ export default {
   text-align: left;
   padding-top: 22px;
   margin-left: 17px;
+}
+.header__blockLink {
+  display: flex;
+  cursor: pointer;
 }
 </style>

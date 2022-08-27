@@ -23,7 +23,8 @@
             <input
               class="counter__input"
               type="number"
-              min="0"
+              min="1"
+              max="100"
               v-model="counter"
               v-blur
             />
@@ -146,7 +147,7 @@ export default {
           date: "29 февраля 2020",
         },
       ],
-      counter: 0,
+      counter: 1,
       id: this.$route.params["id"],
       product: this.$route.query.product,
     };
@@ -159,13 +160,16 @@ export default {
   },
   methods: {
     append() {
-      if (this.counter < 0) {
-        this.counter = 0;
+      if (this.counter <= 1) {
+        this.counter = 1;
       }
-      this.counter++;
+      if( this.counter < 100){
+        this.counter++;
+      }else this.counter = 100;
+      
     },
     prepend() {
-      if (this.counter > 0) {
+      if (this.counter > 1) {
         this.counter--;
       }
     },

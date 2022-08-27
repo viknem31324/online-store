@@ -15,7 +15,8 @@
                   class="myCard__img"
                   :src="product.image"
                   width="333px"
-                  height="192px"
+                  max-height="192px"
+                  contain
                   cols="12"
                 ></v-img>
                 <v-card-actions class="myCard__action">

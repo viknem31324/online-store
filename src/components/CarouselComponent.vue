@@ -1,33 +1,33 @@
 <template>
   <v-carousel :height="height" hide-delimiters class="mySlider">
-    <template v-slot:prev="{ on, attrs }">
+    <template v-slot:prev="{ on, attrs}">
       <v-btn
         class="mySlider__btn"
-        color="transparent"
+        color="#fff"
         width="42px"
         height="71px"
         role="img"
         v-bind="attrs"
         v-on="on"
+        elevation="0"
         ><img src="../assets/home/carousel/Vector-l.svg" alt=""
       /></v-btn>
     </template>
     <template v-slot:next="{ on, attrs }">
       <v-btn
         class="mySlider__btn"
-        color="transparent"
+        color="#fff"
         width="42px"
         height="71px"
         role="img"
         v-bind="attrs"
         v-on="on"
+        elevation="0"
         ><img src="../assets/home/carousel/Vector-r.svg" alt=""
       /></v-btn>
     </template>
-    <v-carousel-item
-      v-for="(item, i) in arr"
-      :key="i"
-      :src="item"
+    <v-carousel-item v-for="(item, i) in arr" :key="i"
+      ><v-img :src="item" max-height="450px" contain></v-img
     ></v-carousel-item>
   </v-carousel>
 </template>
@@ -55,7 +55,7 @@ export default {
 };
 </script>
 <style>
-.mySlider__btn.v-window__next {
-  background: transparent;
+.mySlider {
+  padding-top: 30px;
 }
 </style>
