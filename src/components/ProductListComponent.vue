@@ -33,6 +33,7 @@
                       width="147"
                       height="60"
                       color="#57de54"
+                      @click.stop.prevent="[addCart({p: product, count: 1})]"
                     >
                       <span class="myCard__text">Купить</span>
                     </v-btn>
@@ -47,7 +48,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: ["products"],
   data(){
@@ -55,9 +56,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getProductsList"]),
+    ...mapGetters(["getProductsList", "getCartList"]),
   },
   methods: {
+    ...mapActions(["addCart"]),
     linkPush(product) {
       this.$router
         .push({
@@ -69,6 +71,7 @@ export default {
         })
         .catch(() => {});
     },
+    
   },
 };
 </script>

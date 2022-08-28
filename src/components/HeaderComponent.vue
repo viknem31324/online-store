@@ -27,7 +27,7 @@
           >+7 (499) 999 99 99</a
         >
       </div>
-      <div class="header__cart cart">
+      <router-link tag="div" to="/shopcart" class="header__cart cart">
         <v-btn elevation="0" icon
           ><v-icon
             class="cart__shoppingCart"
@@ -38,12 +38,14 @@
             shopping_cart</v-icon
           ></v-btn
         >
-        <div class="cart__counter"></div>
-      </div>
+        <div class="cart__counter">{{getCartCount}}</div>
+      </router-link>
     </div>
   </v-app-bar>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -54,6 +56,9 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters(["getCartCount"]),
+  }
 };
 </script>
 <style>
@@ -64,14 +69,21 @@ export default {
 }
 .cart__counter {
   position: absolute;
+  display: flex;
   top: 13px;
   left: 24px;
   width: 30px;
   height: 30px;
   background: #fe0404;
   border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
 }
-.cart__counter::before {
+/* .cart__counter::before {
   content: "2";
   position: absolute;
   left: 11px;
@@ -80,7 +92,7 @@ export default {
   font-size: 18px;
   line-height: 21px;
   color: #ffffff;
-}
+} */
 .header__cart {
   position: relative;
   margin-left: 195px;

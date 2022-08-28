@@ -3,13 +3,13 @@
     <v-app>
       <div class="wrapper">
         <HeaderComponent />
-  
+
         <v-main class="main">
           <div class="containers">
             <router-view></router-view>
           </div>
         </v-main>
-  
+
         <FooterComponent />
       </div>
     </v-app>
@@ -27,13 +27,14 @@ export default {
     FooterComponent,
   },
   methods: {
-    ...mapActions(["axioProductsList"]),
+    ...mapActions(["axioProductsList", "createCartList"]),
   },
-  computed:{
+  computed: {
     ...mapGetters(["getProductsList"]),
   },
-  created() {
+  async created() {
     this.axioProductsList();
+    this.createCartList();
   },
 };
 </script>
@@ -44,17 +45,17 @@ export default {
   font-weight: 400;
   color: #000000;
 }
-.containers{
+.containers {
   max-width: 1440px;
   padding: 0;
   margin: 0 auto;
   width: 100%;
   height: auto;
 }
-.main.v-main{
+.main.v-main {
   padding: 0;
 }
-ul{
+ul {
   list-style-type: none;
 }
 </style>

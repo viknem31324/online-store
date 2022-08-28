@@ -44,6 +44,12 @@
             height="60px"
             dark
             color="#57de54"
+            @click="
+              [
+                addCart({ p: product, count: boolCount }),
+                $router.push('/shopcart'),
+              ]
+            "
             ><span>Купить</span></v-btn
           >
         </div>
@@ -128,7 +134,7 @@
 import CarouselComponent from "./CarouselComponent.vue";
 import ProductListComponent from "./ProductListComponent.vue";
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -159,14 +165,14 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["addCart"]),
     append() {
       if (this.counter <= 1) {
         this.counter = 1;
       }
-      if( this.counter < 100){
+      if (this.counter < 100) {
         this.counter++;
-      }else this.counter = 100;
-      
+      } else this.counter = 100;
     },
     prepend() {
       if (this.counter > 1) {
@@ -180,6 +186,13 @@ export default {
   },
   computed: {
     ...mapGetters(["getProductsList", "getTopProducts"]),
+    boolCount() {
+      if (this.counter < 1) {
+        return 1;
+      } else if (this.counter > 100) {
+        return 100;
+      } else return this.counter;
+    },
   },
 };
 </script>

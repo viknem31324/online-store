@@ -12,7 +12,7 @@ Vue.directive('blur', {
       if (el.value <= 1) {
         el.value = 1;
       }
-      if(el.value > 100){
+      if (el.value > 100) {
         el.value = 100;
       }
     });
