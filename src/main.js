@@ -20,6 +20,11 @@ Vue.directive('blur', {
 });
 
 new Vue({
+  data() {
+    return {
+      infoClientCheck: false,
+    }
+  },
   vuetify,
   store,
   router,

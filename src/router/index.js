@@ -5,6 +5,7 @@ import HomeComponent from '../components/HomeComponent';
 import NewsComponent from '../components/NewsComponent';
 import ProductComponent from '../components/ProductComponent';
 import ShoppingCartComponent from '../components/ShoppingCartComponent';
+import ClientInfoComponent from '../components/ClientInfoComponent';
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/shopcart',
     name: 'shopcart',
     component: ShoppingCartComponent,
+  },
+  {
+    path: '/clientInfo',
+    name: 'clientInfo',
+    component: ClientInfoComponent,
   }
 ]
 

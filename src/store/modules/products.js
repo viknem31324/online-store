@@ -7,6 +7,11 @@ export default {
             const products = ref.data;
             ctx.commit("updateProductsList", products);
         },
+        async sendFormServ(form) {
+            await axios.post("https://fakestoreapi.com/products", {
+                form: form,
+            }).catch(e => { this.error.push(e) });
+        },
         addCart(ctx, cart) {
             ctx.commit("updateCartList", cart);
         },
@@ -16,14 +21,18 @@ export default {
         prependCount(ctx, item) {
             ctx.commit("prependCount", item);
         },
-        createCartList(ctx){
+        createCartList(ctx) {
             let pars = JSON.parse(localStorage.getItem("cartList"));
             ctx.commit("createCartList", pars);
         },
     },
     mutations: {
-        createCartList(state, pars){
-            if(pars){
+        clearCartList(state) {
+            state.cartList = [];
+            localStorage.setItem("cartList", JSON.stringify(state.cartList));
+        },
+        createCartList(state, pars) {
+            if (pars) {
                 state.cartList = pars;
             }
         },
@@ -38,8 +47,6 @@ export default {
                 item.count += Number(cart.count);
             }
             localStorage.setItem("cartList", JSON.stringify(state.cartList));
-            let pars = JSON.parse(localStorage.getItem("cartList"));
-            console.log(pars)
         },
         appendCount(state, product) {
             let el = state.cartList.find(item => item.cart.id === product.id);
@@ -51,8 +58,6 @@ export default {
                 }
             } else el.count = 100;
             localStorage.setItem("cartList", JSON.stringify(state.cartList));
-            let pars = JSON.parse(localStorage.getItem("cartList"));
-            console.log(pars)
         },
         prependCount(state, product) {
             let el = state.cartList.find(item => item.cart.id === product.id);

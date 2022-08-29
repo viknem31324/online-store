@@ -77,14 +77,7 @@
         </v-col>
         <v-col class="shopCart__active pa-0" xs="12" sm="12" md="12" lg="3">
           <div class="shopCart__price">Итого: {{ getPriceAllCart }} $</div>
-          <v-btn
-            class="shopCart__btn"
-            width="334px"
-            height="60px"
-            dark
-            color="#57de54"
-            ><span>Оформить</span></v-btn
-          >
+          <FormOrderComponent></FormOrderComponent>
         </v-col>
       </v-row>
     </div>
@@ -95,21 +88,21 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import ProductListComponent from "./ProductListComponent.vue";
+import FormOrderComponent from "./FormOrderComponent.vue";
 
 export default {
   data() {
-    return {
-      arr: JSON.parse(localStorage.getItem("cartList")),
-    };
+    return {};
   },
   computed: {
     ...mapGetters(["getTopProducts", "getCartList", "getPriceAllCart"]),
   },
   methods: {
-    ...mapActions(["appendCount", "prependCount", "createCartList"]),
+    ...mapActions(["appendCount", "prependCount"]),
   },
   components: {
     ProductListComponent,
+    FormOrderComponent,
   },
 };
 </script>
@@ -148,17 +141,6 @@ export default {
   font-size: 36px;
   line-height: 42px;
   color: #000000;
-}
-.shopCart__btn {
-  margin-top: 15px;
-}
-.shopCart__btn span {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
-  text-transform: none;
 }
 .shopCart__myCard {
   display: flex;
