@@ -91,37 +91,44 @@
           </v-card>
         </v-tab-item>
         <v-tab-item class="feedback">
-          <v-card class="myTab__element" height="288" flat color="#C9DEF1">
-            <ul class="feedback__list">
-              <li
-                class="feedback__item message"
-                v-for="message in feedback"
-                :key="message.name"
-              >
-                <v-card
-                  light
-                  class="message__item"
-                  width="654"
-                  color="#C9DEF1"
-                  elevation="0"
-                >
-                  <v-card-title class="message__name pb-1 pt-0">{{
-                    message.name
-                  }}</v-card-title>
-                  <v-card-text class="pb-1">
-                    <p class="message__text">
-                      {{ message.text }}
-                    </p>
-                  </v-card-text>
-                  <v-card-text class="message__date pb-0 pt-0">
-                    <p class="message__date">
-                      {{ message.date }}
-                    </p>
-                  </v-card-text>
-                </v-card>
-              </li>
-            </ul>
-            <v-card-text></v-card-text>
+          <v-card class="myTab__element" height="354" flat color="#C9DEF1">
+            <v-row>
+              <v-col class="pa-0" cols="6">
+                <ul class="feedback__list pl-3 pt-4">
+                  <li
+                    class="feedback__item message"
+                    v-for="message in getFeedback"
+                    :key="message.name"
+                  >
+                    <v-card
+                      light
+                      class="message__item"
+                      width="654"
+                      color="#C9DEF1"
+                      elevation="0"
+                    >
+                      <v-card-title class="message__name pb-1 pt-0 pl-0">{{
+                        message.name
+                      }}</v-card-title>
+                      <v-card-text class="pb-1 pl-0">
+                        <p class="message__text">
+                          {{ message.text }}
+                        </p>
+                      </v-card-text>
+                      <v-card-text class="message__date pb-0 pt-0 pl-0">
+                        <p class="message__date">
+                          {{ message.date }}
+                        </p>
+                      </v-card-text>
+                    </v-card>
+                  </li>
+                </ul>
+              </v-col>
+              <v-col cols="6">
+                <h2 class="feedback__titleForm pl-3">Оставить отзыв</h2>
+                <FormFeedbackComponent></FormFeedbackComponent>
+              </v-col>
+            </v-row>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -133,6 +140,7 @@
 <script>
 import CarouselComponent from "./CarouselComponent.vue";
 import ProductListComponent from "./ProductListComponent.vue";
+import FormFeedbackComponent from "./FormFeedbackComponent.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -141,18 +149,6 @@ export default {
     return {
       tab: null,
       tabs: ["Характеристики", "Описание", "Отзывы"],
-      feedback: [
-        {
-          name: "UserName1",
-          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias culpa dicta eligendi, exercitationem impedit nisi? Adipisci animi aspernatur assumenda delectus et explicabo fugiat ipsa itaque molestias necessitatibus placeat, rem",
-          date: "29 февраля 2020",
-        },
-        {
-          name: "UserName2",
-          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias culpa dicta eligendi, exercitationem impedit nisi? Adipisci animi aspernatur assumenda delectus et explicabo fugiat ipsa itaque molestias necessitatibus placeat, rem",
-          date: "29 февраля 2020",
-        },
-      ],
       counter: 1,
       id: this.$route.params["id"],
       product: this.$route.query.product,
@@ -183,9 +179,10 @@ export default {
   components: {
     CarouselComponent,
     ProductListComponent,
+    FormFeedbackComponent,
   },
   computed: {
-    ...mapGetters(["getProductsList", "getTopProducts"]),
+    ...mapGetters(["getProductsList", "getTopProducts", "getFeedback"]),
     boolCount() {
       if (this.counter < 1) {
         return 1;
@@ -323,5 +320,17 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0;
   padding-top: 10px;
   margin-bottom: 10px;
+}
+.feedback__titleForm {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+}
+.feedback__list {
+  height: 354px;
+  overflow: auto;
 }
 </style>

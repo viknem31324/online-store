@@ -12,6 +12,9 @@ export default {
                 form: form,
             }).catch(e => { this.error.push(e) });
         },
+        addFeedback(ctx, feed) {
+            ctx.commit("updateFeedback", feed);
+        },
         addCart(ctx, cart) {
             ctx.commit("updateCartList", cart);
         },
@@ -27,6 +30,9 @@ export default {
         },
     },
     mutations: {
+        updateFeedback(state, feed) {
+            state.feedback.push(feed);
+        },
         clearCartList(state) {
             state.cartList = [];
             localStorage.setItem("cartList", JSON.stringify(state.cartList));
@@ -75,8 +81,23 @@ export default {
     state: {
         products: [],
         cartList: [],
+        feedback: [
+            {
+                name: "UserName1",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias culpa dicta eligendi, exercitationem impedit nisi? Adipisci animi aspernatur assumenda delectus et explicabo fugiat ipsa itaque molestias necessitatibus placeat, rem",
+                date: "29 02 2020",
+            },
+            {
+                name: "UserName2",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias culpa dicta eligendi, exercitationem impedit nisi? Adipisci animi aspernatur assumenda delectus et explicabo fugiat ipsa itaque molestias necessitatibus placeat, rem",
+                date: "29 02 2020",
+            },
+        ],
     },
     getters: {
+        getFeedback(state) {
+            return state.feedback;
+        },
         getPriceAllCart(state) {
             let sum = 0;
             if (state.cartList.length === 0) {
@@ -107,14 +128,7 @@ export default {
             return state.products.filter(x => x.rating.rate > 4)
         },
         createdDay() {
-            let day = new Date().getDate();
-            let month = () => {
-                let month = new Date().getMonth() + 1;
-                if (month <= 9) return '0' + month
-                else return month;
-            }
-            let year = new Date().getFullYear();
-            return day + ' ' + month + ' ' + year;
+            return (new Date().getDate()) + ' ' + ((new Date().getMonth() + 1) <= 9 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + ' ' + (new Date().getFullYear());
         },
     },
 }
