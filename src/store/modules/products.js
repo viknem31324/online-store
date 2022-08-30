@@ -127,6 +127,18 @@ export default {
         getTopProducts(state) {
             return state.products.filter(x => x.rating.rate > 4)
         },
+        getMensProducts(state) {
+            return state.products.filter(x => x.category === "men's clothing");
+        },
+        getJeweleryProducts(state){
+            return state.products.filter(x => x.category === "jewelery");
+        },
+        getElectronicsProducts(state){
+            return state.products.filter(x => x.category === "electronics");
+        },
+        getWomensProducts(state){
+            return state.products.filter(x => x.category === "women's clothing");
+        },
         createdDay() {
             return (new Date().getDate()) + ' ' + ((new Date().getMonth() + 1) <= 9 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + ' ' + (new Date().getFullYear());
         },

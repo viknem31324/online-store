@@ -32,8 +32,9 @@ export default {
   computed: {
     ...mapGetters(["getProductsList"]),
   },
-  async created() {
+  created() {
     this.axioProductsList();
+    console.log(this.getProductsList)
     this.createCartList();
   },
 };

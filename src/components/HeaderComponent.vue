@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="#c9def1" height="100px" class="header">
     <div class="containers header__containers">
-      <router-link tag="div" class="header__blockLink" to="/">
+      <router-link tag="div" class="header__blockLink" to="/home">
         <v-app-bar-nav-icon width="71px" height="71px" class="header__logo">
           <img class="header__img" src="../assets/header/vue-logo.svg" alt="" />
         </v-app-bar-nav-icon>
@@ -11,13 +11,32 @@
       </router-link>
       <nav class="header__nav">
         <ul class="header__list">
-          <router-link
-            class="header__link"
-            tag="li"
-            v-for="item in links"
-            :key="item.title"
-            :to="item.path"
-            >{{ item.title }}</router-link
+          <li class="header__link">
+            <v-menu open-on-hover bottom offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on">Категории</div>
+              </template>
+
+              <v-list>
+                <v-list-item
+                  class="header__link"
+                  v-for="item in categories"
+                  :key="item.title"
+                >
+                  <router-link tag="div" :to="item.path" >{{
+                    item.title
+                  }}</router-link>
+                  <li></li
+                ></v-list-item>
+              </v-list>
+            </v-menu>
+          </li>
+
+          <router-link class="header__link" tag="li" to="/news"
+            >Новости</router-link
+          >
+          <router-link class="header__link" tag="li" to="/about"
+            >О нас</router-link
           >
         </ul>
       </nav>
@@ -38,7 +57,7 @@
             shopping_cart</v-icon
           ></v-btn
         >
-        <div class="cart__counter">{{getCartCount}}</div>
+        <div class="cart__counter">{{ getCartCount }}</div>
       </router-link>
     </div>
   </v-app-bar>
@@ -49,19 +68,53 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      links: [
-        { title: "Категории", path: "/" },
-        { title: "Новости", path: "/news" },
-        { title: "О нас", path: "/about" },
+      categories: [
+        {
+          title: "Men's clothing",
+          path: {
+            name: "categories",
+            params: { id: 1 },
+          },
+        },
+        {
+          title: "Jewelery",
+          path: {
+            name: "categories",
+            params: { id: 2},
+          },
+        },
+        {
+          title: "Electronics",
+          path: {
+            name: "categories",
+            params: { id: 3 },
+          },
+        },
+        {
+          title: "Women's clothing",
+          path: {
+            name: "categories",
+            params: { id: 4 },
+          },
+        },
       ],
     };
   },
   computed: {
-    ...mapGetters(["getCartCount"]),
-  }
+    ...mapGetters([
+      "getCartCount",
+      "getMensProducts",
+      "getJeweleryProducts",
+      "getElectronicsProducts",
+      "getWomensProducts",
+    ]),
+  },
 };
 </script>
 <style>
+.activ-link-menu {
+  color: "#c9def1";
+}
 .header__containers {
   display: flex;
   padding: 0;
@@ -83,16 +136,6 @@ export default {
   line-height: 21px;
   color: #ffffff;
 }
-/* .cart__counter::before {
-  content: "2";
-  position: absolute;
-  left: 11px;
-  top: 6px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21px;
-  color: #ffffff;
-} */
 .header__cart {
   position: relative;
   margin-left: 195px;

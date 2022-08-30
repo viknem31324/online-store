@@ -6,12 +6,13 @@ import NewsComponent from '../components/NewsComponent';
 import ProductComponent from '../components/ProductComponent';
 import ShoppingCartComponent from '../components/ShoppingCartComponent';
 import ClientInfoComponent from '../components/ClientInfoComponent';
+import CategoriesComponent from '../components/CategoriesComponent'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeComponent,
   },
@@ -29,6 +30,11 @@ const routes = [
     path: '/product/:id',
     name: 'product',
     component: ProductComponent,
+  },
+  {
+    path: '/categorie/:id',
+    name: 'categories',
+    component: CategoriesComponent,
   },
   {
     path: '/shopcart',
