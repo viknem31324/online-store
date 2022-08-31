@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="#c9def1" height="100px" class="header">
     <div class="containers header__containers">
-      <router-link tag="div" class="header__blockLink" to="/home">
+      <router-link tag="div" class="header__blockLink" to="/">
         <v-app-bar-nav-icon width="71px" height="71px" class="header__logo">
           <img class="header__img" src="../assets/header/vue-logo.svg" alt="" />
         </v-app-bar-nav-icon>

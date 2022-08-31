@@ -13,8 +13,6 @@
         v-model="page"
         :length="Math.ceil(this.getProductsList.length / 6) - 1"
         @input="onPag()"
-        next-icon="mdi-menu-left"
-        prev-icon="mdi-menu-right"
       ></v-pagination>
     </div>
     <h2 class="topProductTitle">Топ продаж</h2>
@@ -49,8 +47,8 @@ export default {
       }
     },
   },
-  mounted() {
-    this.axioProductsList();
+  async mounted() {
+    await this.axioProductsList();
     this.products = this.getProductsList;
     console.log(this.getProductsList.length);
     this.onPag();
@@ -100,5 +98,10 @@ export default {
 .home__pag .v-pagination__navigation {
   min-width: 60px;
   height: 60px;
+  background: #c9def1 !important;
+  box-shadow: none;
+}
+.home__pag .v-icon{
+  font-size: 40px !important;
 }
 </style>

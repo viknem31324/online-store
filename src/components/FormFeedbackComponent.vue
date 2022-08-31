@@ -49,7 +49,6 @@ export default {
     ...mapActions(["addFeedback"]),
     validate() {
       this.$refs.form.validate();
-      console.log(this.$refs.form.validate());
     },
     sendFeedback() {
       this.date = this.createdDay;
@@ -59,7 +58,6 @@ export default {
           text: this.feed,
           date: this.date,
         });
-        console.log(this.date);
         this.name = "";
         this.feed = "";
       }

@@ -12,8 +12,8 @@
         :length="Math.ceil(this.getProductsList.length / 6) - 3"
         @input="onPag()"
         color="#C9DEF1"
-        next-icon="mdi-chevron-left"
-        prev-icon="mdi-chevron-right"
+        next-icon="mdi-chevron-right"
+        prev-icon="mdi-chevron-left"
       ></v-pagination>
     </div>
     <h2 class="topProductTitle">Топ продаж</h2>
@@ -134,5 +134,8 @@ export default {
 .categories__pag .v-pagination__navigation {
   min-width: 60px;
   height: 60px;
+}
+.categories__pag .v-icon{
+  font-size: 40px !important;
 }
 </style>
